@@ -1,0 +1,333 @@
+{
+  "id": "2f5a9818-2bbe-4f12-8cec-0a268536ee44",
+  "version": "2.0",
+  "name": "UaiCar",
+  "url": "http://localhost/uaicar/frontend/view/cliente/cliente.php",
+  "tests": [{
+    "id": "61606b5d-eb75-4838-902c-18ad83621c95",
+    "name": "Funcionário",
+    "commands": [{
+      "id": "5070303c-42a6-4e90-b047-322a2b731aaf",
+      "comment": "",
+      "command": "open",
+      "target": "/uaicar/frontend/view/funcionario/funcionario.php",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "a8cebfaf-b371-4683-98ea-b91d51674478",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "516x700",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "75491fd3-0ea8-4a86-8443-7c56cecc16a1",
+      "comment": "",
+      "command": "click",
+      "target": "css=.p-0 > .card-body",
+      "targets": [
+        ["css=.p-0 > .card-body", "css:finder"],
+        ["xpath=//div[@id='main-wrapper']/div/div/div[2]/div/div/div", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1c2bb0aa-9ca7-4bec-acb2-d1fbe636febd",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn:nth-child(2)",
+      "targets": [
+        ["css=.btn:nth-child(2)", "css:finder"],
+        ["xpath=//button[@type='button']", "xpath:attributes"],
+        ["xpath=//div[@id='main-wrapper']/div/div/div[2]/div/div/div/button", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/div/button", "xpath:position"],
+        ["xpath=//button[contains(.,' Adicionar Funcionário')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "de076bad-27ef-4503-8695-47b04a0c1583",
+      "comment": "",
+      "command": "click",
+      "target": "id=nome",
+      "targets": [
+        ["id=nome", "id"],
+        ["name=nome", "name"],
+        ["css=#nome", "css:finder"],
+        ["xpath=//input[@id='nome']", "xpath:attributes"],
+        ["xpath=//form[@id='cadastra_cliente']/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2b80f591-c7b1-42db-b523-1ade782d1f84",
+      "comment": "",
+      "command": "type",
+      "target": "id=nome",
+      "targets": [
+        ["id=nome", "id"],
+        ["name=nome", "name"],
+        ["css=#nome", "css:finder"],
+        ["xpath=//input[@id='nome']", "xpath:attributes"],
+        ["xpath=//form[@id='cadastra_cliente']/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "José Francisco"
+    }, {
+      "id": "ec6b6697-893d-466f-8298-64f86dce9b6f",
+      "comment": "",
+      "command": "type",
+      "target": "id=email",
+      "targets": [
+        ["id=email", "id"],
+        ["name=email", "name"],
+        ["css=#email", "css:finder"],
+        ["xpath=//input[@id='email']", "xpath:attributes"],
+        ["xpath=//form[@id='cadastra_cliente']/div[2]/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/input", "xpath:position"]
+      ],
+      "value": "jos.francisco.nascimento@gmail.com"
+    }, {
+      "id": "3e545db6-0eaa-4254-90f8-f7aa8b5ac669",
+      "comment": "",
+      "command": "type",
+      "target": "id=senha",
+      "targets": [
+        ["id=senha", "id"],
+        ["name=senha", "name"],
+        ["css=#senha", "css:finder"],
+        ["xpath=//input[@id='senha']", "xpath:attributes"],
+        ["xpath=//form[@id='cadastra_cliente']/div[3]/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div/input", "xpath:position"]
+      ],
+      "value": "1234567"
+    }, {
+      "id": "272aef75-7c86-4761-94c8-413286cbcd84",
+      "comment": "",
+      "command": "click",
+      "target": "id=tipo",
+      "targets": [
+        ["id=tipo", "id"],
+        ["name=tipo", "name"],
+        ["css=#tipo", "css:finder"],
+        ["xpath=//select[@id='tipo']", "xpath:attributes"],
+        ["xpath=//form[@id='cadastra_cliente']/div[4]/div/div/select", "xpath:idRelative"],
+        ["xpath=//div/div/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "49b48883-8c5d-4d55-82de-8bf245958c40",
+      "comment": "",
+      "command": "select",
+      "target": "id=tipo",
+      "targets": [],
+      "value": "label=Atendente"
+    }, {
+      "id": "cdb767bd-ed40-4acf-9e45-b8d80e720f15",
+      "comment": "",
+      "command": "click",
+      "target": "id=tipo",
+      "targets": [
+        ["id=tipo", "id"],
+        ["name=tipo", "name"],
+        ["css=#tipo", "css:finder"],
+        ["xpath=//select[@id='tipo']", "xpath:attributes"],
+        ["xpath=//form[@id='cadastra_cliente']/div[4]/div/div/select", "xpath:idRelative"],
+        ["xpath=//div/div/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "cc4af57b-c487-4ffe-b15d-4bac5b026376",
+      "comment": "",
+      "command": "click",
+      "target": "id=btn_Cadastra_Funcionario",
+      "targets": [
+        ["id=btn_Cadastra_Funcionario", "id"],
+        ["css=#btn_Cadastra_Funcionario", "css:finder"],
+        ["xpath=//input[@id='btn_Cadastra_Funcionario']", "xpath:attributes"],
+        ["xpath=//form[@id='cadastra_cliente']/div[5]/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[5]/div/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "58ab04fb-6a59-4b26-8878-cfe64a8b2e8b",
+    "name": "Cliente",
+    "commands": [{
+      "id": "1d38b191-95a7-46b6-b9d7-05164fcea6ec",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost/uaicar/frontend/view/cliente/cliente.php",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e848c058-00ca-4330-9ca0-abd809d3075f",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1382x744",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "0767e96b-0237-4bd2-af37-c074366579d6",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn:nth-child(2)",
+      "targets": [
+        ["css=.btn:nth-child(2)", "css:finder"],
+        ["xpath=//button[@type='button']", "xpath:attributes"],
+        ["xpath=//div[@id='main-wrapper']/div/div/div[2]/div/div/div/button", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/div/button", "xpath:position"],
+        ["xpath=//button[contains(.,' Adicionar Cliente')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "b4ef1d1e-3eaf-4d6e-a1fb-c020720feb69",
+      "comment": "",
+      "command": "click",
+      "target": "id=nome",
+      "targets": [
+        ["id=nome", "id"],
+        ["name=nome", "name"],
+        ["css=#nome", "css:finder"],
+        ["xpath=//input[@id='nome']", "xpath:attributes"],
+        ["xpath=//form[@id='cadastra_cliente']/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div/div/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8dee7e5d-986d-4228-9ca7-51092b1ce019",
+      "comment": "",
+      "command": "type",
+      "target": "id=nome",
+      "targets": [
+        ["id=nome", "id"],
+        ["name=nome", "name"],
+        ["css=#nome", "css:finder"],
+        ["xpath=//input[@id='nome']", "xpath:attributes"],
+        ["xpath=//form[@id='cadastra_cliente']/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div/div/div/input", "xpath:position"]
+      ],
+      "value": "José Francisco"
+    }, {
+      "id": "b357676e-476b-41d5-8e0b-9baaee58ca4c",
+      "comment": "",
+      "command": "type",
+      "target": "id=email",
+      "targets": [
+        ["id=email", "id"],
+        ["name=email", "name"],
+        ["css=#email", "css:finder"],
+        ["xpath=//input[@id='email']", "xpath:attributes"],
+        ["xpath=//form[@id='cadastra_cliente']/div/div[2]/div/input", "xpath:idRelative"],
+        ["xpath=//div/div[2]/div/input", "xpath:position"]
+      ],
+      "value": "jose_francisco@gmail.com"
+    }, {
+      "id": "2293d707-2fcd-44e6-9ed2-0d87dc5baaee",
+      "comment": "",
+      "command": "type",
+      "target": "id=rg",
+      "targets": [
+        ["id=rg", "id"],
+        ["name=rg", "name"],
+        ["css=#rg", "css:finder"],
+        ["xpath=//input[@id='rg']", "xpath:attributes"],
+        ["xpath=//form[@id='cadastra_cliente']/div/div[3]/div/input", "xpath:idRelative"],
+        ["xpath=//div/div[3]/div/input", "xpath:position"]
+      ],
+      "value": "MG-12345"
+    }, {
+      "id": "c776fbe1-7ee3-445f-b1dd-8edfa36e7422",
+      "comment": "",
+      "command": "type",
+      "target": "id=cnh",
+      "targets": [
+        ["id=cnh", "id"],
+        ["name=cnh", "name"],
+        ["css=#cnh", "css:finder"],
+        ["xpath=//input[@id='cnh']", "xpath:attributes"],
+        ["xpath=//form[@id='cadastra_cliente']/div/div[4]/div/input", "xpath:idRelative"],
+        ["xpath=//div/div[4]/div/input", "xpath:position"]
+      ],
+      "value": "1234556"
+    }, {
+      "id": "48f7e4e5-bcb6-496d-be91-ce15990f0f9c",
+      "comment": "",
+      "command": "type",
+      "target": "id=nascimento",
+      "targets": [
+        ["id=nascimento", "id"],
+        ["name=nascimento", "name"],
+        ["css=#nascimento", "css:finder"],
+        ["xpath=//input[@id='nascimento']", "xpath:attributes"],
+        ["xpath=//form[@id='cadastra_cliente']/div[2]/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/input", "xpath:position"]
+      ],
+      "value": "12-10-1997"
+    }, {
+      "id": "e632b5ed-0285-4429-8949-f39e8fadeefc",
+      "comment": "",
+      "command": "type",
+      "target": "id=estado",
+      "targets": [
+        ["id=estado", "id"],
+        ["name=estado", "name"],
+        ["css=#estado", "css:finder"],
+        ["xpath=//input[@id='estado']", "xpath:attributes"],
+        ["xpath=//form[@id='cadastra_cliente']/div[2]/div[2]/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div[2]/div/input", "xpath:position"]
+      ],
+      "value": "MG"
+    }, {
+      "id": "a80a4c65-1689-4aef-9c4f-368e11fda7ed",
+      "comment": "",
+      "command": "type",
+      "target": "id=cidade",
+      "targets": [
+        ["id=cidade", "id"],
+        ["name=cidade", "name"],
+        ["css=#cidade", "css:finder"],
+        ["xpath=//input[@id='cidade']", "xpath:attributes"],
+        ["xpath=//form[@id='cadastra_cliente']/div[2]/div[3]/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div[3]/div/input", "xpath:position"]
+      ],
+      "value": "Paraisópolis"
+    }, {
+      "id": "3e927916-2700-48cf-863b-d0453358a500",
+      "comment": "",
+      "command": "type",
+      "target": "id=endereco",
+      "targets": [
+        ["id=endereco", "id"],
+        ["name=endereco", "name"],
+        ["css=#endereco", "css:finder"],
+        ["xpath=//input[@id='endereco']", "xpath:attributes"],
+        ["xpath=//form[@id='cadastra_cliente']/div[2]/div[4]/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div[4]/div/input", "xpath:position"]
+      ],
+      "value": "Rua das Paineiras"
+    }, {
+      "id": "cd1e076d-2e06-495b-902d-117d3a63494c",
+      "comment": "",
+      "command": "click",
+      "target": "id=btn_Cadastra_Cliente",
+      "targets": [
+        ["id=btn_Cadastra_Cliente", "id"],
+        ["css=#btn_Cadastra_Cliente", "css:finder"],
+        ["xpath=//input[@id='btn_Cadastra_Cliente']", "xpath:attributes"],
+        ["xpath=//form[@id='cadastra_cliente']/div[3]/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "ced093b2-d1d9-4d8f-af62-6c84035caf97",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["61606b5d-eb75-4838-902c-18ad83621c95"]
+  }],
+  "urls": ["http://localhost/", "http://localhost/uaicar/frontend/view/cliente/cliente.php"],
+  "plugins": []
+}
