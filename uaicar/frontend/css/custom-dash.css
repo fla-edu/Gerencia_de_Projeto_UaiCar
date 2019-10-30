@@ -1,0 +1,113 @@
+.loader1, .load-wrapp {
+    position: relative;
+    margin: 75px auto;
+    width: 150px;
+    height: 150px;
+    display: block;
+    overflow: hidden;
+}
+
+.loader1 div {
+height: 100%;
+}
+.loader1 div {
+border-radius: 50%;
+padding: 8px;
+border: 2px solid transparent;
+-webkit-animation: rotate linear 3.5s infinite;
+        animation: rotate linear 3.5s infinite;
+border-top-color: rgba(50, 154, 251, 0.5);
+border-left-color: rgba(50, 154, 251, 0.5);
+-webkit-animation-timing-function: cubic-bezier(0.55, 0.38, 0.21, 0.88);
+        animation-timing-function: cubic-bezier(0.55, 0.38, 0.21, 0.88);
+-webkit-animation-duration: 3s;
+        animation-duration: 3s;
+}
+div:hover{
+-webkit-animation-play-state: paused;
+        animation-play-state: paused;
+}
+@keyframes rotate {
+0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+}
+50% {
+    -webkit-transform: rotate(180deg);
+            transform: rotate(180deg);
+}
+100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+}
+}
+@-webkit-keyframes rotate {
+0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+}
+50% {
+    -webkit-transform: rotate(180deg);
+            transform: rotate(180deg);
+}
+100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+}
+}
+* {
+box-sizing: border-box;
+}
+.load-3 .line:nth-last-child(1) {animation: loadingC .6s .1s linear infinite;}
+.load-3 .line:nth-last-child(2) {animation: loadingC .6s .2s linear infinite;}
+.load-3 .line:nth-last-child(3) {animation: loadingC .6s .3s linear infinite;}
+.load-3 .line:nth-last-child(4) {animation: loadingC .6s .2s linear infinite;}
+.load-3 .line:nth-last-child(5) {animation: loadingC .6s .3s linear infinite;}
+@keyframes loadingC {
+    0 {transform: translate(0,0);}
+    50% {transform: translate(0,15px);}
+    100% {transform: translate(0,0);}
+}
+
+.bg-loader{
+    background-color:rgba(0,0,0,0.9); width:100%; height:100%; z-index: 10000!important; position:absolute;
+}
+
+.bg-loader-show{
+    display: inline !important;
+}
+
+.bg-loader-hide{
+    display: none !important;
+}
+
+.container-loader{
+    position: fixed; top: 35%; left: 50%; margin-top: -50px; margin-left: -100px;
+}
+
+.image-preview-input {
+    position: relative;
+	overflow: hidden;
+	margin: 0px;    
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;    
+}
+.image-preview-input input[type=file] {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin: 0;
+	padding: 0;
+	font-size: 20px;
+	cursor: pointer;
+	opacity: 0;
+	filter: alpha(opacity=0);
+}
+.image-preview-input-title {
+    margin-left:2px;
+}
+
+.card-padding-custom{
+    padding: 15px !important;
+}
