@@ -17,86 +17,86 @@ $email = $_SESSION['email'];
         <div class="col-12 p-0 m-0">
             <div class="card p-0 m-0">
                 <div class="card-body">
-                    <h4 class="card-title ml-3 mt-3">Cadastro de Cliente</h4>
-                    <button class="btn btn-info ml-3" data-toggle="modal" data-target=".bd-example-modal-md" type="button"><i class="fas fa-plus-circle"></i> Adicionar Cliente</button>
-                    <h4 class="card-title ml-3 mt-3">Buscar Cliente</h4>
+                    <h4 class="card-title ml-3 mt-3">Cadastro de Veículo</h4>
+                    <button class="btn btn-info ml-3" data-toggle="modal" data-target=".bd-example-modal-md" type="button"><i class="fas fa-plus-circle"></i> Adicionar Veiculo</button>
+                    <h4 class="card-title ml-3 mt-3">Buscar Veículo</h4>
                     <div class="ml-3">
-                        <select id="id_cliente" name="id_cliente" class="select2 select2-material">
-                            <option value="#" selected disabled>Selecione o Cliente...</option>
+                        <select id="id_veiculo" name="id_veiculo" class="select2 select2-material">
+                            <option value="#" selected disabled>Selecione o Veículo...</option>
                         </select>  
                     </div>                  
-                    <div id="tabelaCliente" class="d-none" value="">
+                    <div id="tabelaVeiculo" class="d-none" value="">
                         <div class="mt-3 ml-3"> 
-                            <h4 class="card-title border-secondary pb-2">Dados do Cliente</h4>
+                            <h4 class="card-title border-secondary pb-2">Dados do Veículo</h4>
                         </div>
-                        <form id="dados_cliente" method="post"  enctype="multipart/form-data" class="form-material">
+                        <form id="dados_veiculo" method="post"  enctype="multipart/form-data" class="form-material">
                             <div class="row">
                                 <div class="form-group ml-3 col-12">
-                                    <label class="col-2" >Nome:</label>
-                                    <input id="nome_cliente" name="nome_cliente" type="text" value="" class="form-control form-control-line p-0 text-center col-8">
+                                    <label class="col-2" >Marca:</label>
+                                    <input id="marca_veiculo" name="marca_veiculo" type="text" value="" class="form-control form-control-line p-0 text-center col-8">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-group ml-3 col-12">
-                                    <label class="col-2" >Email:</label>
-                                    <input id="email_cliente" name="email_cliente" type="text" value="" class="form-control form-control-line p-0 text-center col-8">
+                                    <label class="col-2" >Modelo:</label>
+                                    <input id="modelo_veiculo" name="modelo_veiculo" type="text" value="" class="form-control form-control-line p-0 text-center col-8">
                                 </div>
                             </div> 
                             <div class="row">
                                 <div class="form-group ml-3 col-12">
-                                    <label class="col-2" >RG:</label>
-                                    <input id="rg_cliente" name="rg_cliente" type="text" value="" class="form-control form-control-line p-0 text-center col-8">
+                                    <label class="col-2" >Placa:</label>
+                                    <input id="placa_veiculo" name="placa_veiculo" type="text" value="" class="form-control form-control-line p-0 text-center col-8">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-group ml-3 col-12">
-                                    <label class="col-2" >CNH:</label>
-                                    <input id="cnh_cliente" name="cnh_cliente" type="text" value="" class="form-control form-control-line p-0 text-center col-8">
+                                    <label class="col-2" >Ano:</label>
+                                    <input id="ano_veiculo" name="ano_veiculo" type="text" value="" class="form-control form-control-line p-0 text-center col-8">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-group ml-3 col-12">
-                                    <label class="col-2" >Data de Nascimento:</label>
-                                    <input id="nascimento_cliente" name="nascimento_cliente" type="text" value="" class="form-control form-control-line p-0 text-center col-8">
+                                    <label class="col-2" >KM Inicial:</label>
+                                    <input id="km_inicial_veiculo" name="km_inicial_veiculo" type="text" value="" class="form-control form-control-line p-0 text-center col-8">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-group ml-3 col-12">
-                                    <label class="col-2 " >Estado:</label>
-                                    <input id="estado_cliente" name="estado_cliente" type="text" value="" class="form-control form-control-line p-0 text-center col-8">
+                                    <label class="col-2" >KM Atual:</label>
+                                    <input id="km_atual_veiculo" name="km_atual_veiculo" type="text" value="" class="form-control form-control-line p-0 text-center col-8">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group ml-3 col-12">
+                                    <label class="col-2 " >Preço Diário:</label>
+                                    <input id="preco_veiculo" name="preco_veiculo" type="text" value="" class="form-control form-control-line p-0 text-center col-8">
                                     
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-group ml-3 col-12">
-                                    <label class="col-2" >Cidade:</label>
-                                    <input id="cidade_cliente" name="cidade_cliente" type="text" value="" class="form-control form-control-line p-0 text-center col-8">
+                                    <label class="col-2" >Data de Aquisicao:</label>
+                                    <input id="data_aquisicao_veiculo" name="data_aquisicao_veiculo" type="text" value="" class="form-control form-control-line p-0 text-center col-8">
                                 </div>
                             </div>   
                             <div class="row">
                                 <div class="form-group ml-3 col-12">
-                                    <label class="col-2" >Endereço:</label>
-                                    <input id="endereco_cliente" name="endereco_cliente" type="text" value="" class="form-control form-control-line p-0 text-center col-8">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group ml-3 col-12">
                                     <label class="col-2" >Ativo:</label>
-                                    <select id="ativo_cliente" name="status_" class="form-control p-0 text-center col-8">
+                                    <select id="ativo_veiculo" name="ativo_veiculo" class="form-control p-0 text-center col-8">
  
                                     </select>
                                 </div>
                             </div> 
                             <div class="row">
                                 <div class="form-group ml-3 col-12">
-                                    <input id="btn_Atualiza_Cliente"  class="btn btn-info btn-lg btn-block" value="Atualizar Cliente">
+                                    <input id="btn_atualiza_veiculo"  class="btn btn-info btn-lg btn-block" value="Atualizar Veículo">
                                 </div>
                             </div>   
                         </form>  
                     </div>
                     
                     <!-- INÍCIO MODAL DE CADASTRO -->
-                    <div id="modal-cadastra-cliente" class="modal fade bd-example-modal-md" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                    <div id="modal-cadastra-veiculo" class="modal fade bd-example-modal-md" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                             <div class="modal-content">
                                 <div class="row">
@@ -108,66 +108,71 @@ $email = $_SESSION['email'];
                                                     <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>    
-                                                <h4 class="card-title border-bottom border-secondary pb-2">Cadastro de Cliente</h4>
+                                                <h4 class="card-title border-bottom border-secondary pb-2">Cadastro de Veículo</h4>
 
                                                     <form id="cadastra_cliente" method="post"  enctype="multipart/form-data" class="form-material m-t-40">
 
                                                         <div class="row">
                                                             <div class="col-md-3">
                                                                 <div class="form-group">
-                                                                    <label>Nome:</label>
-                                                                    <input id="nome" name="nome" type="text" class="form-control form-control-line"> 
+                                                                    <label>Marca:</label>
+                                                                    <input id="marca" name="marca" type="text" class="form-control form-control-line"> 
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-3">
                                                                 <div class="form-group">
-                                                                    <label>Email:</label>
-                                                                    <input id="email" name="email" type="text" class="form-control form-control-line"> 
+                                                                    <label>Modelo:</label>
+                                                                    <input id="modelo" name="modelo" type="text" class="form-control form-control-line"> 
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-3">
                                                                 <div class="form-group">
-                                                                    <label>RG:</label>
-                                                                    <input id="rg" name="rg" type="text" class="form-control form-control-line"> 
+                                                                    <label>Placa:</label>
+                                                                    <input id="placa" name="placa" type="text" class="form-control form-control-line"> 
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-3">
                                                                 <div class="form-group">
-                                                                    <label>CNH:</label>
-                                                                    <input id="cnh" name="cnh" type="text" class="form-control form-control-line"> 
+                                                                    <label>Ano:</label>
+                                                                    <input id="ano" name="ano" type="text" class="form-control form-control-line"> 
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="row">
-                                                            <div class="col-md-3">
+                                                            <div class="col-md-4">
                                                                 <div class="form-group">
-                                                                    <label>Nascimento:</label>
-                                                                    <input id="nascimento" name="nascimento" type="text" class="form-control form-control-line"> 
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-2">
-                                                                <div class="form-group">
-                                                                    <label>Estado:</label>
-                                                                    <input id="estado" name="estado" type="text" class="form-control form-control-line"> 
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-3">
-                                                                <div class="form-group">
-                                                                    <label>Cidade:</label>
-                                                                    <input id="cidade" name="cidade" type="text" class="form-control form-control-line"> 
+                                                                    <label>KM Inicial:</label>
+                                                                    <input id="km_inicial" name="km_inicial" type="text" class="form-control form-control-line"> 
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-4">
                                                                 <div class="form-group">
-                                                                    <label>Endereco:</label>
-                                                                    <input id="endereco" name="endereco" type="text" class="form-control form-control-line"> 
+                                                                    <label>Preço Diário:</label>
+                                                                    <input id="preco" name="preco" type="text" class="form-control form-control-line"> 
                                                                 </div>
                                                             </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label>Data de Aquisição:</label>
+                                                                    <input id="data_aquisicao" name="data_aquisicao" type="text" class="form-control form-control-line"> 
+                                                                </div>
+                                                            </div>
+                                                            <!-- <div class="col-md-2 pl-2">
+                                                                <div class="form-group">
+                                                                    <label>Imagem:</label>
+                                                                    <div class="upload-btn-wrapper">
+                                                                        <input type="file" accept="image/png, image/jpeg, image/gif" id="input-file-events" name="input-file-events" />
+                                                                    </div>
+                                                                    <div class="col-md-1">
+                                                                        <input type="text" class="d-none form-control form-control-line" readonly id="nome-arquivo">
+                                                                    </div>
+                                                                </div>
+                                                            </div> -->
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-md-12">
                                                                 <div class="form-group">
-                                                                    <input id="btn_Cadastra_Cliente"  type="submit" class="btn btn-info btn-lg btn-block" value="Cadastrar">
+                                                                    <input id="btn_Cadastra_Veiculo"  type="submit" class="btn btn-info btn-lg btn-block" value="Cadastrar">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -181,8 +186,7 @@ $email = $_SESSION['email'];
                         </div>
                     </div>
 
-
-                   
+        
     <!-- ============================================================== -->
     <!-- End Page Content -->
     <!-- ============================================================== -->
@@ -192,7 +196,7 @@ $email = $_SESSION['email'];
 <!-- SCRIPTS INDIVIDUAIS - QUE SÃO UTILIZADOS APENAS NESSA PÁGINA, SÃO INSERIDOS ABAIXO -->
 
 <!-- Script que contém os JS de Cadastro Cliente -->
-<script src="Cliente.js"></script>
+<script src="Veiculo.js"></script>
 <!-- ================================================================================= -->   
 <script>
     

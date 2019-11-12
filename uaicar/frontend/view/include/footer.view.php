@@ -101,5 +101,6 @@
     <script src="../../assets/plugins/datatables/buttons.print.min.js"></script>
     <!-- Select 2 -->
     <script src="../../assets/plugins/select2/dist/js/select2.full.min.js" type="text/javascript"></script>
+    <script src="../../assets/plugins/moment/moment.min.js"></script>
 
     <!-- <script src="../../assets/plugins/skype/sdk.min.js"></script> -->

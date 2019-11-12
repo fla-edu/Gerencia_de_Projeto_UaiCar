@@ -105,10 +105,11 @@ if($method == 'GET'){
 		$estado = $_POST['estado'];
 		$cidade = $_POST['cidade'];
 		$endereco = $_POST['endereco'];
+		$ativo = $_POST['ativo'];
 
 		require_once("./controller/Cliente.controller.class.php");
 		$controller = new Cliente;
-		$controller->listaItens("proc_ALTERA_CLIENTE $ID, '$nome', '$email', '$rg', '$cnh', '$nascimento', '$estado', '$cidade', '$endereco'");
+		$controller->listaItens("proc_ALTERA_CLIENTE $ID, '$nome', '$email', '$rg', '$cnh', '$nascimento', '$estado', '$cidade', '$endereco', '$ativo'");
 		
 	}  
 
@@ -121,6 +122,113 @@ if($method == 'GET'){
 		$controller->listaItens("proc_CONSULTA_CLIENTE");
 		
 	}  
+
+		// CONSULTA FUNCIONÁRIOS - DATATABLE
+	if($_POST['read'] == 2 && $_POST['controller'] == 'Funcionario'){
+
+
+			require_once("./controller/Funcionario.controller.class.php");
+			$controller = new Funcionario;
+			$controller->listaItens("proc_CONSULTA_FUNCIONARIO_INATIVO");
+	}  
+
+	//////////// VEÍCULOS ////////
+	if($_POST['insert'] == 1 && $_POST['controller'] == 'Veiculo'){
+
+		$marca = $_POST['marca']; 
+		$modelo = $_POST['modelo'];
+		$placa = $_POST['placa'];
+		$ano = $_POST['ano'];
+		$km_inicial = $_POST['km_inicial']; 
+		$preco = $_POST['preco'];
+		$data_aquisicao = $_POST['data_aquisicao'];
+
+		require_once("./controller/Veiculo.controller.class.php");
+		$controller = new Veiculo;
+		$controller->cadastraItens("proc_INSERE_VEICULO '$marca', '$modelo', '$placa', '$ano', '$km_inicial', '$preco', '$data_aquisicao'");
+}
+	// CONSULTA VEICULOS - SELECT
+	if($_POST['read'] == 1 && $_POST['controller'] == 'Veiculo'){
+
+		require_once("./controller/Veiculo.controller.class.php");
+		$controller = new Veiculo;
+		$controller->listaItens("proc_CONSULTA_VEICULO ");
+	}  
+	// CONSULTA VEICULOS - TABLE
+	if($_POST['read'] == 2 && $_POST['controller'] == 'Veiculo'){
+
+		$id = $_POST['id'];
+
+		require_once("./controller/Veiculo.controller.class.php");
+		$controller = new Veiculo;
+		$controller->listaItens("proc_CONSULTA_VEICULO_ID '$id'");
+		
+	}  
+
+	if($_POST['update'] == 1 && $_POST['controller'] == 'Veiculo'){
+
+		$ID = $_POST['ID'];
+		$marca = $_POST['marca']; 
+		$modelo = $_POST['modelo'];
+		$placa = $_POST['placa'];
+		$ano = $_POST['ano'];
+		$km_inicial = $_POST['km_inicial']; 
+		$km_atual = $_POST['km_atual']; 
+		$preco = $_POST['preco'];
+		$data_aquisicao = $_POST['data_aquisicao'];
+		$ativo = $_POST['ativo'];
+
+		require_once("./controller/Veiculo.controller.class.php");
+		$controller = new Veiculo;
+		$controller->cadastraItens("proc_ALTERA_VEICULO $ID, '$marca', '$modelo', '$placa', '$ano', '$km_inicial', '$km_atual', '$preco', '$data_aquisicao', '$ativo'");
+	}
+
+	// CONSULTA FUNCIONÁRIOS - DATATABLE
+	if($_POST['read'] == 3 && $_POST['controller'] == 'Veiculo'){
+
+
+		require_once("./controller/Veiculo.controller.class.php");
+		$controller = new Veiculo;
+		$controller->listaItens("proc_CONSULTA_VEICULO_INATIVO");
+	}  
+
+	// ATUALIZA FUNCIONÁRIO 
+	if($_POST['update'] == 2 && $_POST['controller'] == 'Veiculo'){
+
+		$ID = $_POST['ID']; 
+		$ativo = $_POST['ativo'];
+
+		require_once("./controller/Veiculo.controller.class.php");
+		$controller = new Veiculo;
+		$controller->listaItens("proc_ALTERA_VEICULO_INATIVO $ID, '$ativo'");
+		
+	}  
+
+	if($_POST['insert'] == 1 && $_POST['controller'] == 'Aluguel'){
+
+		$ID_Cliente = $_POST['ID_Cliente']; 
+		$ID_Veiculo = $_POST['ID_Veiculo'];
+		$Dias = $_POST['Dias'];
+		$Data_Aluguel = $_POST['Data_Aluguel'];
+		$Data_Entrega = $_POST['Data_Entrega']; 
+		$Preco = $_POST['Preco']; 
+		$Pagamento = $_POST['Pagamento'];
+		$Usuario = $_POST['Usuario'];
+
+		require_once("./controller/Aluguel.controller.class.php");
+		$controller = new Aluguel;
+		$controller->cadastraItens("proc_INSERE_ALUGUEL $ID_Cliente, $ID_Veiculo, $Dias, '$Data_Aluguel', '$Data_Entrega', '$Preco', '$Pagamento', '$Usuario'");
+	}
+
+	// CONSULTA FUNCIONÁRIOS - DATATABLE
+	if($_POST['read'] == 1 && $_POST['controller'] == 'Aluguel'){
+
+
+		require_once("./controller/Aluguel.controller.class.php");
+		$controller = new Aluguel;
+		$controller->listaItens("proc_CONSULTA_ALUGUEL");
+	} 
+
 }
 
 

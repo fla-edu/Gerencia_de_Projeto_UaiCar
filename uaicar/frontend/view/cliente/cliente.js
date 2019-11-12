@@ -128,7 +128,20 @@ const listacliente = (ID) =>{
             $("#estado_cliente").val(data[0].Estado);
             $("#cidade_cliente").val(data[0].Cidade);
             $("#endereco_cliente").val(data[0].Endereco);
- 
+            console.log(data[0].Ativo);
+            let conteudo = '';
+            if(data[0].Ativo == 1) {
+                conteudo +=
+                    `<option selected="true" value="1">Ativo</option>
+                    <option value="0">Inativo</option>
+                `
+            } else {
+                conteudo +=
+                `   <option selected="true" value="0">Inativo</option>
+                    <option value="1">Ativo</option>
+                `
+            }
+            $('#ativo_cliente').append(conteudo);
         })
     })
     .catch (function(err) {
@@ -149,7 +162,7 @@ $(document).on('click', '#btn_Atualiza_Cliente', function(){
     let estado = $('#estado_cliente').val();
     let cidade = $('#cidade_cliente').val();
     let endereco = $('#endereco_cliente').val();
-
+    let ativo = $('#ativo_cliente').val();
 
     $.ajax({
         url: '../../../backend/index.php',
@@ -164,7 +177,8 @@ $(document).on('click', '#btn_Atualiza_Cliente', function(){
             nascimento: nascimento,
             estado: estado,
             cidade: cidade,
-            endereco: endereco
+            endereco: endereco,
+            ativo: ativo
         },
         type: 'POST',
         success: function(data){

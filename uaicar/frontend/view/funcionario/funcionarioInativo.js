@@ -6,61 +6,13 @@ $().ready(function(){
 });
 
 
-
-// Ao clicar no botão do modal de cadastrar funcionário
-$('#btn_Cadastra_Funcionario').click(function(){
-
-    event.preventDefault();
-
-    let nome = $('#nome').val();
-    let email = $('#email').val();
-    let senha = $('#senha').val();
-    let tipo = $('#tipo').val();
-    let controller = 'Funcionario';
-
-    if(nome && email && senha && tipo){
-        $.ajax({
-            url: '../../../backend/index.php',
-            data: {
-                insert: 1,
-                controller: controller,
-                nome: nome,
-                email: email,
-                senha: senha,
-                tipo: tipo
-            },
-            type: 'POST',
-            success: function(data){
-                let obj = JSON.parse(data);
-
-                if(obj[0].RETORNO == 1) {
-                    alertaRetorno('Cadastro de Funcionário', `${obj[0].MENSAGEM}`, 'success',3000,false);
-                    
-                }else if (obj[0].RETORNO == 0){
-                    alertaRetorno('Cadastro de Funcionário', `${obj[0].MENSAGEM}`,'error',3000,false);
-                }
-
-                $('.bd-example-modal-md').modal('hide');
-                listaFuncionarios();
-            },
-            error: function(){
-                alertaRetorno('Cadastro de Funcionário', 'Erro, tente novamente.','error',3000,false);
-            }
-        });
-    }else{
-        alertaRetorno('Cadastro de Funcionário', 'Preencha todos os campos!','error',3000,false);
-    }
-   
-    
-});
-
 // Listar os Funcionários na Table
 const listaFuncionarios = () =>{
 
     fetch(`../../../backend/index.php`, {
         credentials: 'same-origin',
         method: `POST`,
-        body: `read=1&controller=Funcionario`,
+        body: `read=2&controller=Funcionario`,
         headers: {'Content-type':'application/x-www-form-urlencoded'}
     })
     .then(function(response) {
@@ -170,8 +122,6 @@ function alterarFuncionario(ID){
     let tipo = $(`#tipo_${ID}`).val();
     let ativo = $(`#ativo_${ID}`).val();
 
-    console.log(ativo);
-
     $.ajax({
         url: '../../../backend/index.php',
         data: {
@@ -201,11 +151,3 @@ function alterarFuncionario(ID){
     });
 
 }
-
-
-$("#modal-cadastra-funcionario").on("hidden.bs.modal", function(){
-    $("#tipo").val('Administrador');
-    $("#nome").val('');
-    $("#email").val('');
-    $("#senha").val('');
-});
