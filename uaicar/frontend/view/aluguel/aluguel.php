@@ -110,7 +110,106 @@ $email = $_SESSION['email'];
                         </div>
                     </div>
 
-        
+        <!-- MODAL DE FINALIZACAO -->
+                    <div id="modal-finaliza-Aluguel" class="modal fade modal-atualizar" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="text-right">
+                                                    <button type="button" class="btn btn-info sombra-btn-entrar pt-0 pb-0 pl-2 pr-2" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>    
+                                                <h4 class="card-title border-bottom border-secondary pb-2">Finalizar Aluguel</h4>
+
+                                                    <form id="cadastra_cliente" method="post"  enctype="multipart/form-data" class="form-material m-t-40">
+
+                                                        <div class="row">
+                                                            <div class="col-md-3">
+                                                                <div class="form-group">
+                                                                    <label>Cliente:</label>
+                                                                    <input id="id_cliente_finaliza" name="id_dias" type="text" class="form-control form-control-line" disabled> 
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <div class="form-group">
+                                                                <label>Veículo:</label>
+                                                                    <input id="id_veiculo_finaliza" name="id_dias" type="text" class="form-control form-control-line" disabled> 
+                                                                </div>
+                                                            </div>    
+                                                            <div class="col-md-2">
+                                                                <div class="form-group">
+                                                                    <label>Dias:</label>
+                                                                    <input id="id_dias_finaliza" name="id_dias" type="text" class="form-control form-control-line"> 
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                                <div class="form-group">
+                                                                    <label>Dias Atraso:</label>
+                                                                    <input id="id_dias_atraso_finaliza" name="id_dias" type="text" class="form-control form-control-line"> 
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                                <div class="form-group">
+                                                                    <label>Preço:</label>
+                                                                    <input id="id_preco_finaliza" name="id_preco" type="text" class="form-control form-control-line" disabled> 
+                                                                </div>
+                                                            </div>
+                                                        </div>    
+                                                        <div class="row">    
+                                                            <div class="col-md-3">
+                                                                <div class="form-group">
+                                                                    <label>Data Aluguel:</label>
+                                                                    <input id="id_data_aluguel_finaliza" name="id_data_aluguel" type="text" class="form-control form-control-line"> 
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <div class="form-group">
+                                                                    <label>Data Entrega:</label>
+                                                                    <input id="id_data_entrega_finaliza" name="id_data_entrega" type="text" class="form-control form-control-line" disabled> 
+                                                                </div>
+                                                            </div>
+                                                        
+
+                                                            <div class="col-md-2">
+                                                                <div class="form-group">
+                                                                    <label>KM Entrega:</label>
+                                                                    <input id="id_km_entrega_finaliza" name="id_preco" type="text" class="form-control form-control-line"> 
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                                <div class="form-group">
+                                                                    <label>Pagamento:</label>
+                                                                    <select id="id_pagamento_finaliza" name="id_pagamento" class="select2 select2-material">
+
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-2 mt-4">
+                                                                <div class="checkbox checkbox-success">
+                                                                    <input id="checkbox33" type="checkbox">
+                                                                    <label for="checkbox33">Finalizado</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row ml-1">
+                                                            <div class="col-md-12">
+                                                                <div class="form-group">
+                                                                    <input id="btn_finaliza_aluguel"  type="submit" class="btn btn-info btn-lg btn-block" value="Finalizar">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
     <!-- ============================================================== -->
     <!-- End Page Content -->
     <!-- ============================================================== -->

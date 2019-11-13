@@ -115,6 +115,7 @@ $('#btn_Cadastra_Aluguel').click(function(){
 
                 if(obj[0].RETORNO == 1) {
                     alertaRetorno('Cadastro de Aluguel', `${obj[0].MENSAGEM}`, 'success',3000,false);
+                    listaAluguel();
                     
                 }else if (obj[0].RETORNO == 0){
                     alertaRetorno('Cadastro de Aluguel', `${obj[0].MENSAGEM}`,'error',3000,false);
@@ -143,25 +144,62 @@ $('#id_dias').focusout(function(){
     
 });
 
-$(document).off('focusout').on('focusout', '#id_data_aluguel', function(){
+$('#id_dias_finaliza').focusout(function(){
+
+    let veiculo = $('#id_veiculo_finaliza').val().split('$');
+    veiculo1 = veiculo[1];
+    let dias_atraso = $('#id_dias_atraso_finaliza').val();
+    let preco = veiculo1 * (eval(this.value) + eval(dias_atraso));
+    preco = preco.toFixed(2)
+    $('#id_preco_finaliza').val(`R$ ${preco}`);
+    
+});
+
+$('#id_dias_atraso_finaliza').focusout(function(){
+
+    let veiculo = $('#id_veiculo_finaliza').val().split('$');
+    veiculo1 = veiculo[1];
+    let dias_atraso = $('#id_dias_finaliza').val();
+    let preco = veiculo1 * (eval(this.value) + eval(dias_atraso));
+    preco = preco.toFixed(2)
+    $('#id_preco_finaliza').val(`R$ ${preco}`);
+    
+});
+
+$('#id_data_aluguel').focusout(function(){
     let dias = $('#id_dias').val();
     var splitDate = this.value.split('-');
-    if(splitDate.count == 0){
-        return null;
-    }
 
-    var month = splitDate[0];
-    var day = splitDate[1];
+    var day = splitDate[0];
+    var month = splitDate[1];
     var year = splitDate[2]; 
 
-    let data =  day + '-' + month + '-' + year;
+    let data =  month + '-' + day + '-' + year;
     let date = new Date(data);
+
     date = moment(date).add(dias, 'days').format('DD/MM/YYYY');
     $('#id_data_entrega').val(date);
     
 });
 
+$('#id_data_aluguel_finaliza').focusout(function(){
+    let dias = $('#id_dias_finaliza').val();
+    let dias_atraso = $('#id_dias_atraso_finaliza').val();
 
+    var splitDate = this.value.split('-');
+
+    var day = splitDate[0];
+    var month = splitDate[1];
+    var year = splitDate[2]; 
+
+    let data =  month + '-' + day + '-' + year;
+    let date = new Date(data);
+
+    date = moment(date).add(dias, 'days')
+    date = moment(date).add(dias_atraso, 'days').format('DD/MM/YYYY');
+    $('#id_data_entrega_finaliza').val(date);
+    
+});
 
 // Listar os Funcionários na Table
 const listaAluguel = () =>{
@@ -174,6 +212,7 @@ const listaAluguel = () =>{
     })
     .then(function(response) {
         response.json().then(data =>{
+
             let conteudo = 
                 `<div class="col-md-12">
                     <div class="table-responsive m-t-40">
@@ -197,7 +236,7 @@ const listaAluguel = () =>{
                                     <td class="text-center">${data[i].Placa}</td>
                                     <td class="text-center">${data[i].Data_Aluguel}</td>
                                     <td class="text-center">${data[i].Data_Entrega}</td>
-                                    <td class="text-center"><button type="button" class="btn btn-info btn-sm sombra-btn-entrar" onclick="alterarFuncionario(${data[i].ID})"><i class="fas fa-save"></i> Finalizar</button></td>
+                                    <td class="text-center"><button type="button" class="btn btn-info btn-sm sombra-btn-entrar" onclick="buscaAluguel(${data[i].ID})"><i class="fas fa-clipboard-list"></i> Finalizar</button></td>
                                 </tr>`
                             }
                         conteudo +=
@@ -231,6 +270,113 @@ const listaAluguel = () =>{
     .catch (function(err) {
         throw err;
     })
+}
+
+const buscaAluguel = (ID) =>{
+
+    fetch(`../../../backend/index.php`, {
+        credentials: 'same-origin',
+        method: `POST`,
+        body: `read=2&controller=Aluguel&ID=${ID}`,
+        headers: {'Content-type':'application/x-www-form-urlencoded'}
+    })
+    .then(function(response) {
+        response.json().then(data =>{
+            console.log(data);
+            $('#modal-finaliza-Aluguel').modal('show');
+            $('#id_cliente_finaliza').val(`${data[0].Nome_Cliente}`);
+            $('#id_veiculo_finaliza').val(`${data[0].Marca} - ${data[0].Modelo} - ${data[0].Placa} - R$${data[0].Preco_Diario}`);   
+            $('#id_dias_finaliza').val(`${data[0].Dias_Aluguel}`); 
+            $('#id_dias_atraso_finaliza').val(`${data[0].Dias_Atraso}`);
+            $('#id_preco_finaliza').val(`${data[0].Preco_Aluguel}`);
+            var splitDate = data[0].Data_Aluguel.split('-');
+
+            var year = splitDate[0];
+            var month = splitDate[1];
+            var day = splitDate[2]; 
+        
+            let Data_Aluguel =  day + '-' + month + '-' + year;   
+
+            //
+            var splitDate2 = data[0].Data_Entrega.split('-');
+
+            var year2 = splitDate2[0];
+            var month2 = splitDate2[1];
+            var day2 = splitDate2[2]; 
+        
+            let Data_Entrega =  day2 + '-' + month2 + '-' + year2;  
+
+            $('#id_data_aluguel_finaliza').val(`${Data_Aluguel}`);
+            $('#id_data_entrega_finaliza').val(`${Data_Entrega}`);
+            $('#id_km_entrega_finaliza').val(`${data[0].KM_Entrega}`);
+            
+            let conteudo;
+            if(data[0].Pagamento == 'Pago'){
+                conteudo += `<option value="Pago" selected>Pago</option>
+                             <option value="Pendente">Pendente</option>`;
+            }else{
+                conteudo += `<option value="Pendente" selected>Pendente</option>
+                             <option value="Pago">Pago</option>`;
+            }
+            $('#id_pagamento_finaliza').find('option').remove().end().append(conteudo);
+
+            let Dias = $('#id_dias_finaliza').val();
+            let Dias_Atraso = $('#id_dias_atraso_finaliza').val();
+            let Preco = $('#id_preco_finaliza').val();
+            let Data_Aluguel5 = $('#id_data_aluguel_finaliza').val();
+            let Data_Entrega5 = $('#id_data_entrega_finaliza').val();
+            let KM_Entrega = $('#id_km_entrega_finaliza').val();
+            let Pagamento = $('#id_pagamento_finaliza option:selected').val();
+            let Finalizado = $('#checkbox33').is(':checked');
+            Finalizado == true ? Finalizado = "1" : Finalizado = "0";
+            
+            let controller = 'Aluguel';
+            let Usuario = $('#usuario').text();
+
+            $('#btn_finaliza_aluguel').click(function(){
+                $.ajax({
+                    url: '../../../backend/index.php',
+                    data: {
+                        update: 1,
+                        controller: controller,
+                        ID: ID,
+                        Dias: Dias,
+                        Dias_Atraso: Dias_Atraso,
+                        Preco: Preco,
+                        Data_Aluguel: Data_Aluguel5,
+                        Data_Entrega: Data_Entrega5,
+                        KM_Entrega: KM_Entrega,
+                        Pagamento: Pagamento,
+                        Finalizado: Finalizado,
+                        Usuario: Usuario
+                    },
+                    type: 'POST',
+                    success: function(data){
+                        let obj = JSON.parse(data);
+                        console.log('ue')
+                        if(obj[0].RETORNO == 1) {
+                            alertaRetorno('Cadastro de Aluguel', `${obj[0].MENSAGEM}`, 'success',3000,false);
+                            listaAluguel();
+                            
+                        }else if (obj[0].RETORNO == 0){
+                            alertaRetorno('Cadastro de Aluguel', `${obj[0].MENSAGEM}`,'error',3000,false);
+                        }
+        
+                        $('#modal-finaliza-Aluguel').modal('hide');
+        
+                    },
+                    error: function(){
+                        alertaRetorno('Cadastro de Aluguel', 'Erro, tente novamente.','error',3000,false);
+                    }
+                });
+    
+            })
+            
+
+
+        })
+    });
+
 }
 
 

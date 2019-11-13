@@ -229,6 +229,32 @@ if($method == 'GET'){
 		$controller->listaItens("proc_CONSULTA_ALUGUEL");
 	} 
 
+	if($_POST['read'] == 2 && $_POST['controller'] == 'Aluguel'){
+
+		$ID = $_POST['ID'];
+		require_once("./controller/Aluguel.controller.class.php");
+		$controller = new Aluguel;
+		$controller->listaItens("proc_CONSULTA_ALUGUEL_ID $ID");
+	} 
+	
+	if($_POST['update'] == 1 && $_POST['controller'] == 'Aluguel'){
+
+		$ID = $_POST['ID'];
+		$Dias = $_POST['Dias'];
+		$Dias_Atraso = $_POST['Dias_Atraso'];
+		$Preco = $_POST['Preco']; 
+		$Data_Aluguel = $_POST['Data_Aluguel'];
+		$Data_Entrega = $_POST['Data_Entrega']; 
+		$KM_Entrega = $_POST['KM_Entrega']; 
+		$Pagamento = $_POST['Pagamento'];
+		$Finalizado = $_POST['Finalizado'];
+		$Usuario = $_POST['Usuario'];
+
+		require_once("./controller/Aluguel.controller.class.php");
+		$controller = new Aluguel;
+		$controller->cadastraItens("proc_FINALIZA_ALUGUEL $ID, $Dias, $Dias_Atraso, '$Preco', '$Data_Aluguel', '$Data_Entrega', '$KM_Entrega', 
+		'$Pagamento', '$Finalizado', '$Usuario'");
+	}
 }
 
 
