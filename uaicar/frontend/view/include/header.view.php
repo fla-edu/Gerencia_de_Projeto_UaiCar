@@ -187,7 +187,6 @@
                         <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-account-multiple"></i><span class="hide-menu">Clientes</span></a>
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="../cliente/cliente.php">Cadastrar Clientes</a></li>
-                                <li><a href="../cliente/clienteInativo.php">Clientes Inativos</a></li>
                             </ul>                          
                         </li> 
                         <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-car"></i><span class="hide-menu">Veículos</span></a>
@@ -199,11 +198,16 @@
                         <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-cash"></i><span class="hide-menu">Alugueis</span></a>
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="../aluguel/aluguel.php">Cadastrar Alugueis</a></li>
-                                <li><a href="../aluguel/aluguelInativo.php">Alugueis Cancelados</a></li>
+                                <li><a href="../aluguel/aluguel_cancelado.php">Alugueis Cancelados</a></li>
                             </ul>                          
-                        </li>                        
-                        
-                        
+                        </li>
+                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-file-chart"></i><span class="hide-menu">Relatórios</span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="../relatorios/relatorio_carros.php">Alugueis por Veículos</a></li>
+                                <li><a href="../relatorios/relatorio_clientes.php">Alugueis por Clientes</a></li>
+                            </ul>
+                        </li>
+
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->

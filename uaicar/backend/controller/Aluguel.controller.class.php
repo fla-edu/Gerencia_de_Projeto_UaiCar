@@ -16,8 +16,7 @@ class Aluguel extends Crud {
 	public function cadastraItens($sql){
 		return $this->execute_query($sql);
     }
-    
-		
+
 }
 
 ?>

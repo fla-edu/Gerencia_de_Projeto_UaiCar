@@ -97,7 +97,6 @@ function consultaVeiculos(){
 
 $(document).on('change', '#id_veiculo', function(){
     let ID = this.value;
-    console.log(ID);
     listaVeiculos(ID);
     $('#tabelaVeiculo').val(ID);
     $('#tabelaVeiculo').removeClass('d-none');
@@ -119,7 +118,7 @@ const listaVeiculos = (ID) =>{
             $("#km_inicial_veiculo").val(data[0].KM_Inicial);
             $("#km_atual_veiculo").val(data[0].KM_Atual);
             $("#preco_veiculo").val(data[0].Preco_Diario);
-            $("#data_aquisicao_veiculo").val(data[0].Data_Aquisicao);
+            $("#data_aquisicao_veiculo").val(inverteData(data[0].Data_Aquisicao));
             let conteudo = '';
             if(data[0].Ativo == 1) {
                 conteudo +=
@@ -153,6 +152,7 @@ $(document).on('click', '#btn_atualiza_veiculo', function(){
     let km_atual = $('#km_atual_veiculo').val();
     let preco = $('#preco_veiculo').val();
     let data_aquisicao = $('#data_aquisicao_veiculo').val();
+    data_aquisicao = desinverteData(data_aquisicao);
     let ativo = $('#ativo_veiculo').val();
 
     $.ajax({
@@ -201,3 +201,25 @@ $("#modal-cadastra-veiculo").on("hidden.bs.modal", function(){
     $("#preco").val('');
     $("#data_aquisicao").val('');
 });
+
+function inverteData(data){
+    var splitDate = data.split('-');
+
+    var year = splitDate[0];
+    var month = splitDate[1];
+    var day = splitDate[2];
+
+    let nova_data =  day + '-' + month + '-' + year;
+    return nova_data;
+}
+
+function desinverteData(data){
+    var splitDate = data.split('-');
+
+    var day = splitDate[0];
+    var month = splitDate[1];
+    var year = splitDate[2];
+
+    let nova_data =  year + '-' + month + '-' + day;
+    return nova_data;
+}

@@ -19,7 +19,8 @@ $email = $_SESSION['email'];
                 <div class="card-body">
                     <h4 class="card-title ml-3 mt-3">Cadastro de Aluguel</h4>
                     <button class="btn btn-info ml-3" data-toggle="modal" data-target=".bd-example-modal-md" type="button"><i class="fas fa-plus-circle"></i> Adicionar Aluguel</button>
-                    <div id="tabelaAluguel"></div>
+
+                    <div class="mt-0" id="tabelaAluguel"></div>
 
                     <!-- INÍCIO MODAL DE CADASTRO -->
                     <div id="modal-cadastra-Aluguel" class="modal fade bd-example-modal-md" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -125,7 +126,7 @@ $email = $_SESSION['email'];
                                                 </div>    
                                                 <h4 class="card-title border-bottom border-secondary pb-2">Finalizar Aluguel</h4>
 
-                                                    <form id="cadastra_cliente" method="post"  enctype="multipart/form-data" class="form-material m-t-40">
+                                                    <form id="cadastra_cliente" method="post" action="" enctype="multipart/form-data" class="form-material m-t-40">
 
                                                         <div class="row">
                                                             <div class="col-md-3">
@@ -195,10 +196,11 @@ $email = $_SESSION['email'];
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                        <div class="d-none" id="id_aluguel"></div>
                                                         <div class="row ml-1">
                                                             <div class="col-md-12">
                                                                 <div class="form-group">
-                                                                    <input id="btn_finaliza_aluguel"  type="submit" class="btn btn-info btn-lg btn-block" value="Finalizar">
+                                                                    <input id="btn_finaliza_aluguel"  type="button" class="btn btn-info btn-lg btn-block" value="Finalizar">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -210,6 +212,7 @@ $email = $_SESSION['email'];
                             </div>
                         </div>
                     </div>
+                </div>
     <!-- ============================================================== -->
     <!-- End Page Content -->
     <!-- ============================================================== -->

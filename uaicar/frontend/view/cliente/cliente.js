@@ -33,7 +33,7 @@ function consultaClientes(){
 
             let obj = JSON.parse(data);
             let conteudo = "";
-
+            conteudo += `<option value="#" selected disabled>Selecione o Cliente...</option>`
             for(let i = 0; i < obj.length; i++){
                 conteudo += `<option value=${obj[i].ID}>${obj[i].Nome}</option>`;
             }
@@ -86,8 +86,8 @@ $('#btn_Cadastra_Cliente').click(function(){
                 }
 
                 $('.bd-example-modal-md').modal('hide');
+                $('#id_cliente').find('option').remove().end();
                 consultaClientes();
-                listaclientes();
             },
             error: function(){
                 alertaRetorno('Cadastro de Cliente', 'Erro, tente novamente.','error',3000,false);
@@ -124,7 +124,7 @@ const listacliente = (ID) =>{
             $("#email_cliente").val(data[0].Email);
             $("#rg_cliente").val(data[0].RG);
             $("#cnh_cliente").val(data[0].CNH);
-            $("#nascimento_cliente").val(data[0].Nascimento);
+            $("#nascimento_cliente").val(inverteData(data[0].Nascimento));
             $("#estado_cliente").val(data[0].Estado);
             $("#cidade_cliente").val(data[0].Cidade);
             $("#endereco_cliente").val(data[0].Endereco);
@@ -159,6 +159,7 @@ $(document).on('click', '#btn_Atualiza_Cliente', function(){
     let rg = $('#rg_cliente').val();
     let cnh = $('#cnh_cliente').val();
     let nascimento = $('#nascimento_cliente').val();
+    nascimento = desinverteData(nascimento);
     let estado = $('#estado_cliente').val();
     let cidade = $('#cidade_cliente').val();
     let endereco = $('#endereco_cliente').val();
@@ -210,3 +211,25 @@ $("#modal-cadastra-cliente").on("hidden.bs.modal", function(){
     $("#cidade").val('');
     $("#endereco").val('');
 });
+
+function inverteData(data){
+    var splitDate = data.split('-');
+
+    var year = splitDate[0];
+    var month = splitDate[1];
+    var day = splitDate[2];
+
+    let nova_data =  day + '-' + month + '-' + year;
+    return nova_data;
+}
+
+function desinverteData(data){
+    var splitDate = data.split('-');
+
+    var day = splitDate[0];
+    var month = splitDate[1];
+    var year = splitDate[2];
+
+    let nova_data =  year + '-' + month + '-' + day;
+    return nova_data;
+}
