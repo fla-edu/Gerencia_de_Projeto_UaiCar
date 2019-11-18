@@ -217,7 +217,8 @@ if($method == 'GET'){
 
 		require_once("./controller/Aluguel.controller.class.php");
 		$controller = new Aluguel;
-		$controller->cadastraItens("proc_INSERE_ALUGUEL $ID_Cliente, $ID_Veiculo, $Dias, '$Data_Aluguel', '$Data_Entrega', '$Preco', '$Pagamento', '$Usuario'");
+		$controller->cadastraItens("proc_INSERE_ALUGUEL $ID_Cliente, $ID_Veiculo, $Dias, '$Data_Aluguel',
+		'$Data_Entrega', '$Preco', '$Pagamento', '$Usuario'");
 	}
 
 	// CONSULTA FUNCIONÁRIOS - DATATABLE
@@ -248,13 +249,44 @@ if($method == 'GET'){
 		$KM_Entrega = $_POST['KM_Entrega']; 
 		$Pagamento = $_POST['Pagamento'];
 		$Finalizado = $_POST['Finalizado'];
-		$Usuario = $_POST['Usuario'];
 
-		require_once("./controller/Aluguel.controller.class.php");
-		$controller = new Aluguel;
-		$controller->cadastraItens("proc_FINALIZA_ALUGUEL $ID, $Dias, $Dias_Atraso, '$Preco', '$Data_Aluguel', '$Data_Entrega', '$KM_Entrega', 
-		'$Pagamento', '$Finalizado', '$Usuario'");
+        require_once("./controller/Aluguel.controller.class.php");
+        $controller = new Aluguel;
+        $controller->listaItens("proc_FINALIZA_ALUGUEL '$ID', '$Dias', '$Dias_Atraso', '$Preco', '$Data_Aluguel', 
+        '$Data_Entrega', '$KM_Entrega', '$Pagamento', '$Finalizado'");
 	}
+
+    if($_POST['update'] == 2 && $_POST['controller'] == 'Aluguel'){
+
+        $ID = $_POST['ID'];
+
+        require_once("./controller/Aluguel.controller.class.php");
+        $controller = new Aluguel;
+        $controller->listaItens("proc_CANCELAR_ALUGUEL '$ID'");
+    }
+
+    if($_POST['read'] == 1 && $_POST['controller'] == 'AluguelCancelado'){
+
+        require_once("./controller/Aluguel.controller.class.php");
+        $controller = new Aluguel;
+        $controller->listaItens("proc_CONSULTA_ALUGUEL_CANCELADO");
+    }
+
+    if($_POST['read'] == 1 && $_POST['controller'] == 'Relatorio'){
+        $ID = $_POST['ID'];
+
+        require_once("./controller/Aluguel.controller.class.php");
+        $controller = new Aluguel;
+        $controller->listaItens("proc_CONSULTA_HISTORICO_VEICULO_ID $ID");
+    }
+
+    if($_POST['read'] == 2 && $_POST['controller'] == 'Relatorio'){
+        $ID = $_POST['ID'];
+
+        require_once("./controller/Aluguel.controller.class.php");
+        $controller = new Aluguel;
+        $controller->listaItens("proc_CONSULTA_HISTORICO_CLIENTE_ID $ID");
+    }
 }
 
 

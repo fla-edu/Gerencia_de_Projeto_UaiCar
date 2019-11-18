@@ -17,10 +17,9 @@ $email = $_SESSION['email'];
         <div class="col-12 p-0 m-0">
             <div class="card p-0 m-0">
                 <div class="card-body">
-                    <h4 class="card-title ml-3 mt-3">Veículos Inativos</h4>
-                    <div id="tabelaVeiculos"></div>
-         
-                  
+                    <h4 class="card-title ml-3 mt-3">Alugueis Cancelados</h4>
+                    <div id="tabelaAluguel"></div>
+
     <!-- ============================================================== -->
     <!-- End Page Content -->
     <!-- ============================================================== -->
@@ -30,10 +29,9 @@ $email = $_SESSION['email'];
 <!-- SCRIPTS INDIVIDUAIS - QUE SÃO UTILIZADOS APENAS NESSA PÁGINA, SÃO INSERIDOS ABAIXO -->
 
 <!-- Script que contém os JS de Cadastro Cliente -->
-<script src="veiculoInativo.js"></script>
+
+<script src="aluguel_cancelado.js"></script>
 <!-- ================================================================================= -->   
-<script>
-    
 
 
 </script>

@@ -22,8 +22,7 @@ $email = $_SESSION['email'];
                     <h4 class="card-title ml-3 mt-3">Buscar Cliente</h4>
                     <div class="ml-3">
                         <select id="id_cliente" name="id_cliente" class="select2 select2-material">
-                            <option value="#" selected disabled>Selecione o Cliente...</option>
-                        </select>  
+                        </select>
                     </div>                  
                     <div id="tabelaCliente" class="d-none" value="">
                         <div class="mt-3 ml-3"> 
@@ -79,9 +78,9 @@ $email = $_SESSION['email'];
                                     <input id="endereco_cliente" name="endereco_cliente" type="text" value="" class="form-control form-control-line p-0 text-center col-8">
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row d-none">
                                 <div class="form-group ml-3 col-12">
-                                    <label class="col-2" >Ativo:</label>
+                                    <label class="col-2 " >Ativo:</label>
                                     <select id="ativo_cliente" name="status_" class="form-control p-0 text-center col-8">
  
                                     </select>

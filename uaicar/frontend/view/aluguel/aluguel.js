@@ -177,10 +177,11 @@ $('#id_data_aluguel').focusout(function(){
     let data =  month + '-' + day + '-' + year;
     let date = new Date(data);
 
-    date = moment(date).add(dias, 'days').format('DD/MM/YYYY');
+    date = moment(date).add(dias, 'days').format('DD-MM-YYYY');
     $('#id_data_entrega').val(date);
     
 });
+
 
 $('#id_data_aluguel_finaliza').focusout(function(){
     let dias = $('#id_dias_finaliza').val();
@@ -196,7 +197,7 @@ $('#id_data_aluguel_finaliza').focusout(function(){
     let date = new Date(data);
 
     date = moment(date).add(dias, 'days')
-    date = moment(date).add(dias_atraso, 'days').format('DD/MM/YYYY');
+    date = moment(date).add(dias_atraso, 'days').format('DD-MM-YYYY');
     $('#id_data_entrega_finaliza').val(date);
     
 });
@@ -225,6 +226,7 @@ const listaAluguel = () =>{
                                     <th class="text-center">Data do Aluguel</th>
                                     <th class="text-center">Data Esperada</th>
                                     <th class="text-center">Finalizar</th>
+                                    <th class="text-center">Cancelar</th>
                                 </tr>
                             </thead>                                      
                             <tbody>`
@@ -234,9 +236,10 @@ const listaAluguel = () =>{
                                     <td class="text-center">${data[i].Nome_Cliente}</td>
                                     <td class="text-center">${data[i].Marca} - ${data[i].Modelo}</td>
                                     <td class="text-center">${data[i].Placa}</td>
-                                    <td class="text-center">${data[i].Data_Aluguel}</td>
-                                    <td class="text-center">${data[i].Data_Entrega}</td>
-                                    <td class="text-center"><button type="button" class="btn btn-info btn-sm sombra-btn-entrar" onclick="buscaAluguel(${data[i].ID})"><i class="fas fa-clipboard-list"></i> Finalizar</button></td>
+                                    <td class="text-center">${inverteData(data[i].Data_Aluguel)}</td>
+                                    <td class="text-center">${inverteData(data[i].Data_Entrega)}</td>
+                                    <td class="text-center"><button type="button" class="btn btn-info btn-sm sombra-btn-entrar" onclick="buscaAluguel(${data[i].ID})"><i class="fas fa-clipboard-list"></i></button></td>
+                                    <td class="text-center"><button type="button" class="btn btn-info btn-sm sombra-btn-entrar" onclick="cancelarAluguel(${data[i].ID})"><i class="fas fa-window-close"></i></button></td>
                                 </tr>`
                             }
                         conteudo +=
@@ -258,8 +261,9 @@ const listaAluguel = () =>{
                     aoColumns: [
                         { sWidth: '5%' },
                         { sWidth: '25%' },
-                        { sWidth: '25%' },
-                        { sWidth: '25%' },
+                        { sWidth: '20%' },
+                        { sWidth: '20%' },
+                        { sWidth: '10%' },
                         { sWidth: '10%' },
                         { sWidth: '10%' }
                     ]
@@ -272,6 +276,7 @@ const listaAluguel = () =>{
     })
 }
 
+// Abre modal de finalização
 const buscaAluguel = (ID) =>{
 
     fetch(`../../../backend/index.php`, {
@@ -282,34 +287,34 @@ const buscaAluguel = (ID) =>{
     })
     .then(function(response) {
         response.json().then(data =>{
-            console.log(data);
             $('#modal-finaliza-Aluguel').modal('show');
             $('#id_cliente_finaliza').val(`${data[0].Nome_Cliente}`);
-            $('#id_veiculo_finaliza').val(`${data[0].Marca} - ${data[0].Modelo} - ${data[0].Placa} - R$${data[0].Preco_Diario}`);   
-            $('#id_dias_finaliza').val(`${data[0].Dias_Aluguel}`); 
+            $('#id_veiculo_finaliza').val(`${data[0].Marca} - ${data[0].Modelo} - ${data[0].Placa} - R$${data[0].Preco_Diario}`);
+            $('#id_dias_finaliza').val(`${data[0].Dias_Aluguel}`);
             $('#id_dias_atraso_finaliza').val(`${data[0].Dias_Atraso}`);
-            $('#id_preco_finaliza').val(`${data[0].Preco_Aluguel}`);
+            $('#id_preco_finaliza').val(`R$ ${data[0].Preco_Aluguel}`);
+            $('#id_aluguel').val(ID);
             var splitDate = data[0].Data_Aluguel.split('-');
 
             var year = splitDate[0];
             var month = splitDate[1];
-            var day = splitDate[2]; 
-        
-            let Data_Aluguel =  day + '-' + month + '-' + year;   
+            var day = splitDate[2];
+
+            let Data_Aluguel =  day + '-' + month + '-' + year;
 
             //
             var splitDate2 = data[0].Data_Entrega.split('-');
 
             var year2 = splitDate2[0];
             var month2 = splitDate2[1];
-            var day2 = splitDate2[2]; 
-        
-            let Data_Entrega =  day2 + '-' + month2 + '-' + year2;  
+            var day2 = splitDate2[2];
+
+            let Data_Entrega =  day2 + '-' + month2 + '-' + year2;
 
             $('#id_data_aluguel_finaliza').val(`${Data_Aluguel}`);
             $('#id_data_entrega_finaliza').val(`${Data_Entrega}`);
             $('#id_km_entrega_finaliza').val(`${data[0].KM_Entrega}`);
-            
+
             let conteudo;
             if(data[0].Pagamento == 'Pago'){
                 conteudo += `<option value="Pago" selected>Pago</option>
@@ -320,72 +325,113 @@ const buscaAluguel = (ID) =>{
             }
             $('#id_pagamento_finaliza').find('option').remove().end().append(conteudo);
 
-            let Dias = $('#id_dias_finaliza').val();
-            let Dias_Atraso = $('#id_dias_atraso_finaliza').val();
-            let Preco = $('#id_preco_finaliza').val();
-            let Data_Aluguel5 = $('#id_data_aluguel_finaliza').val();
-            let Data_Entrega5 = $('#id_data_entrega_finaliza').val();
-            let KM_Entrega = $('#id_km_entrega_finaliza').val();
-            let Pagamento = $('#id_pagamento_finaliza option:selected').val();
-            let Finalizado = $('#checkbox33').is(':checked');
-            Finalizado == true ? Finalizado = "1" : Finalizado = "0";
-            
-            let controller = 'Aluguel';
-            let Usuario = $('#usuario').text();
-
-            $('#btn_finaliza_aluguel').click(function(){
-                $.ajax({
-                    url: '../../../backend/index.php',
-                    data: {
-                        update: 1,
-                        controller: controller,
-                        ID: ID,
-                        Dias: Dias,
-                        Dias_Atraso: Dias_Atraso,
-                        Preco: Preco,
-                        Data_Aluguel: Data_Aluguel5,
-                        Data_Entrega: Data_Entrega5,
-                        KM_Entrega: KM_Entrega,
-                        Pagamento: Pagamento,
-                        Finalizado: Finalizado,
-                        Usuario: Usuario
-                    },
-                    type: 'POST',
-                    success: function(data){
-                        let obj = JSON.parse(data);
-                        console.log('ue')
-                        if(obj[0].RETORNO == 1) {
-                            alertaRetorno('Cadastro de Aluguel', `${obj[0].MENSAGEM}`, 'success',3000,false);
-                            listaAluguel();
-                            
-                        }else if (obj[0].RETORNO == 0){
-                            alertaRetorno('Cadastro de Aluguel', `${obj[0].MENSAGEM}`,'error',3000,false);
-                        }
-        
-                        $('#modal-finaliza-Aluguel').modal('hide');
-        
-                    },
-                    error: function(){
-                        alertaRetorno('Cadastro de Aluguel', 'Erro, tente novamente.','error',3000,false);
-                    }
-                });
-    
-            })
-            
-
-
         })
     });
 
 }
 
+// Evento do botao de finalizar
+$('#btn_finaliza_aluguel').click(function(){
+    let ID = $('#id_aluguel').val();
+    let Dias = $('#id_dias_finaliza').val();
+    let Dias_Atraso = $('#id_dias_atraso_finaliza').val();
+    let Preco = $('#id_preco_finaliza').val();
+    if(Preco){
+        Preco = Preco.split('$');
+        Preco = Preco[1].trim();
+    }
+    let Data_Aluguel = $('#id_data_aluguel_finaliza').val();
+    let Data_Entrega = $('#id_data_entrega_finaliza').val();
+    let KM_Entrega = $('#id_km_entrega_finaliza').val();
+    let Pagamento = $('#id_pagamento_finaliza option:selected').val();
+    let Finalizado = $('#checkbox33').is(':checked');
+    Finalizado == true ? Finalizado = "1" : Finalizado = "0";
+    let controller = 'Aluguel';
+
+    if(Pagamento == 'Pendente' && Finalizado == '1'){
+        alertaRetorno('Finalizar Aluguel', `Não pode finalizar um aluguel com o pagamento pendente!`,'error',3000,false);
+    } else if(Finalizado == '1' && KM_Entrega == '0.0'){
+        alertaRetorno('Finalizar Aluguel', `Não pode finalizar um aluguel sem fornecer a Kilometragem!`,'error',3000,false);
+    } else {
+        $.ajax({
+            url: '../../../backend/index.php',
+            data: {
+                update: 1,
+                controller: controller,
+                ID: ID,
+                Dias: Dias,
+                Dias_Atraso: Dias_Atraso,
+                Preco: Preco,
+                Data_Aluguel: Data_Aluguel,
+                Data_Entrega: Data_Entrega,
+                KM_Entrega: KM_Entrega,
+                Pagamento: Pagamento,
+                Finalizado: Finalizado
+            },
+            type: 'POST',
+            success: function (data) {
+                let obj = JSON.parse(data);
+                if (obj[0].RETORNO == 1) {
+                    alertaRetorno('Cadastro de Aluguel', `${obj[0].MENSAGEM}`, 'success', 3000, false);
+                    listaAluguel();
+
+                } else if (obj[0].RETORNO == 0) {
+                    alertaRetorno('Cadastro de Aluguel', `${obj[0].MENSAGEM}`, 'error', 3000, false);
+                }
+
+                $('#modal-finaliza-Aluguel').modal('hide');
+
+            },
+            error: function () {
+                alertaRetorno('Cadastro de Aluguel', 'Erro, tente novamente.', 'error', 3000, false);
+            }
+        });
+    }
+});
+
+function cancelarAluguel(ID){
+    let controller = 'Aluguel';
+    $.ajax({
+        url: '../../../backend/index.php',
+        data: {
+            update: 2,
+            controller: controller,
+            ID: ID
+        },
+        type: 'POST',
+        success: function (data) {
+            let obj = JSON.parse(data);
+            if (obj[0].RETORNO == 1) {
+                alertaRetorno('Cadastro de Aluguel', `${obj[0].MENSAGEM}`, 'success', 3000, false);
+                listaAluguel();
+            } else if (obj[0].RETORNO == 0) {
+                alertaRetorno('Cadastro de Aluguel', `${obj[0].MENSAGEM}`, 'error', 3000, false);
+            }
+        },
+        error: function () {
+            alertaRetorno('Cadastro de Aluguel', 'Erro, tente novamente.', 'error', 3000, false);
+        }
+    })
+}
+
 
 $("#modal-cadastra-Aluguel").on("hidden.bs.modal", function(){
-    $("#id_cliente").val('#');
-    $("#id_veiculo").val('#');
+    $("#id_cliente").select2('val','#');
+    $("#id_veiculo").select2('val','#');
     $("#id_dias").val('');
     $("#id_data_aluguel").val('');
     $("#id_data_entrega").val('');
     $("#id_preco").val('');
-    $("#id_pagamento").val('#');
+    $("#id_pagamento").select2('val','#');
 });
+
+function inverteData(data){
+    var splitDate = data.split('-');
+
+    var year = splitDate[0];
+    var month = splitDate[1];
+    var day = splitDate[2];
+
+    let nova_data =  day + '-' + month + '-' + year;
+    return nova_data;
+}
